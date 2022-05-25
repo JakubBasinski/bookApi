@@ -1,0 +1,79 @@
+<mat-list id="list">
+  <ng-container
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    [scrollWindow]="false"
+  >
+  
+    <mat-card
+      class="book-card"
+      [ngClass]="{ bookmarked: isBookmarked(book) }"
+      *cdkVirtualFor="let book of books"
+    >
+    
+
+      <section class="left">
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>{{ book.volumeInfo.title }}</mat-card-title>
+          <mat-card-subtitle>{{
+            book.volumeInfo.authors?.join(", ")
+          }}</mat-card-subtitle>
+
+          <mat-card-subtitle *ngIf="book.volumeInfo.publishedDate">{{
+            book.volumeInfo.publishedDate.split("-")[0]
+          }}</mat-card-subtitle>
+
+          <mat-card-subtitle
+            class="notprovided"
+            *ngIf="!book.volumeInfo.publishedDate"
+          >
+            <p>Year of publication was not provided</p>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="content" *ngIf="book.volumeInfo.description">
+          <p>
+            {{ book.volumeInfo.description | cutText }}
+          </p>
+        </mat-card-content>
+
+        <mat-card-content
+          class="notprovided"
+          *ngIf="!book.volumeInfo.description"
+        >
+          <p>Description was not provided</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            *ngIf="!isBookmarked(book)"
+            mat-button
+            (click)="addToBookmark(book)"
+          >
+            Add to bookmark
+          </button>
+          <button
+            *ngIf="isBookmarked(book)"
+            mat-button
+            (click)="removeFromBookmark(book)"
+          >
+            Remove from bookmark
+          </button>
+        </mat-card-actions>
+      </section>
+
+      <section class="right">
+        <img
+          class="cover"
+          *ngIf="book.volumeInfo.imageLinks?.smallThumbnail"
+          mat-card-image
+          [src]="book.volumeInfo.imageLinks?.smallThumbnail"
+          alt="Book cover"
+        />
+      </section>
+    </mat-card>
+  </ng-container>
+</mat-list>

@@ -1,0 +1,43 @@
+#list {
+  display: flex;
+  flex-direction: column;
+
+  .book-card {
+    width: 50%;
+    height: 230px;
+    float: left;
+    overflow: hidden;
+    margin: 10px 10px;
+
+    display: flex;
+
+    .left {
+      width: 70%;
+      height: 95%;
+
+      .content {
+        padding-left: 0.3rem;
+      }
+      .notprovided {
+        color: red;
+        padding-top: 1rem;
+      }
+    }
+
+    .right {
+      width: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .cover {
+        width: 90%;
+        height: 95%;
+      }
+    }
+
+    &.bookmarked {
+      border: 10px solid gold;
+    }
+  }
+}

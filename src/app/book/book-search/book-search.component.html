@@ -1,0 +1,50 @@
+<form (ngSubmit)="onSubmit(form)" [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Input your search here...</mat-label>
+    <input
+      formControlName="title"
+      name="title"
+      matInput
+      placeholder="Input your search here..."
+    />
+    <mat-error
+      *ngIf="form.controls['title'].touched && form.controls['title'].errors"
+    >
+      <span *ngIf="form.controls['title'].errors['required']"
+        >This field is mandatory.</span
+      >
+      <span *ngIf="form.controls['title'].errors['minlength']"
+        >This field should contain min 2 characters.</span
+      >
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select language</mat-label>
+    <mat-select formControlName="lang">
+      <mat-option value="pl">Polish</mat-option>
+      <mat-option value="en">English</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button color="primary" mat-raised-button type="submit">Search</button>
+</form>
+
+<cdk-virtual-scroll-viewport
+  #scroller
+  itemSize="232"
+  style="height: 80%; "
+>
+<!-- //[totalItems]="totalItems"  -->
+
+  <app-book-list [books]="books" ></app-book-list>
+
+  <p *ngIf = "noMoreItems">No results</p>
+
+  <div class="spinner-item" *ngIf="loading">
+    <mat-progress-spinner
+      mode="indeterminate"
+      diameter="50"
+    ></mat-progress-spinner>
+  </div>
+</cdk-virtual-scroll-viewport>

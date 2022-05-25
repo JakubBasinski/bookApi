@@ -1,0 +1,57 @@
+#list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#list .book-card {
+  width: 50%;
+  height: 230px;
+  float: left;
+  overflow: hidden;
+  margin: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#list .book-card .left {
+  width: 70%;
+  height: 95%;
+}
+
+#list .book-card .left .content {
+  padding-left: 0.3rem;
+}
+
+#list .book-card .left .notprovided {
+  color: red;
+  padding-top: 1rem;
+}
+
+#list .book-card .right {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#list .book-card .right .cover {
+  width: 90%;
+  height: 95%;
+}
+
+#list .book-card.bookmarked {
+  border: 10px solid gold;
+}
+/*# sourceMappingURL=book-list.component.css.map */
